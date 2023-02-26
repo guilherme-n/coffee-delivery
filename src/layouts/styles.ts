@@ -7,14 +7,12 @@ export const Wrapper = styled.nav`
 
 	& > div {
 		display: flex;
-		justify-content: space-between;
 		gap: 1.5rem;
 	}
 `;
 
 export const Location = styled.div`
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
 	gap: 0.25rem;
 	padding: 0.5rem;
@@ -24,6 +22,7 @@ export const Location = styled.div`
 `;
 
 export const Cart = styled.div`
+	display: flex;
 	padding: 0.5rem;
 	border-radius: 6px;
 	background-color: ${(props) => props.theme['yellow-light']};
