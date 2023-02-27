@@ -2,19 +2,28 @@ import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react';
 import { useTheme } from 'styled-components';
 import coffeeCupSample from '../../assets/coffee-cup-sample.svg';
 import { CoffeeDeliveryAdvantages } from './components/CoffeeDeliveryAdvantages';
-import { CoffeeDeliveryAdvantagesList, MainWrapper } from './styles';
+import { CoffeeDetails } from './components/CoffeeDetails';
+import {
+	CoffeeDeliveryAdvantagesList,
+	CoffeeProductsAvailable,
+	MainWrapper,
+} from './styles';
 
 export function Home() {
 	const theme = useTheme();
+
 	return (
 		<main>
 			<MainWrapper>
 				<div>
-					<h2>Find the perfect coffee to move you all day long</h2>
-					<p>
-						With Coffee Delivery, you can receive your coffee wherever you are
-						at any timeeeeeeeeee
-					</p>
+					<div>
+						<h2>Find the perfect coffee</h2>
+						<h2> to move you all day long</h2>
+						<p>
+							With Coffee Delivery, you can receive your coffee wherever you are
+							at any time
+						</p>
+					</div>
 					<CoffeeDeliveryAdvantagesList>
 						<CoffeeDeliveryAdvantages
 							icon={<ShoppingCart color='white' />}
@@ -40,6 +49,10 @@ export function Home() {
 				</div>
 				<img src={coffeeCupSample} />
 			</MainWrapper>
+
+			<CoffeeProductsAvailable>
+				{/* <CoffeeDetails /> */}
+			</CoffeeProductsAvailable>
 		</main>
 	);
 }
