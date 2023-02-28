@@ -1,7 +1,7 @@
 import { Theme } from './theme';
 
 export const defaultTheme: Theme = {
-	white: '#fffff',
+	white: '#ffffff',
 	background: 'fafafa',
 
 	yellow: '#dbac2c',

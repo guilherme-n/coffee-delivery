@@ -34,4 +34,18 @@ export const CoffeeDeliveryAdvantagesList = styled.div`
 	gap: 1.25rem 2.5rem;
 `;
 
-export const CoffeeProductsAvailable = styled.div``;
+export const CoffeeProductsAvailable = styled.div`
+	h3 {
+		padding-top: 2rem;
+		padding-bottom: 3.375rem;
+		font-size: 2rem;
+		color: ${(props) => props.theme['base-subtitle']};
+	}
+	& > div {
+		display: flex;
+		flex-wrap: wrap;
+		margin: auto;
+		gap: 2.5rem 2rem;
+		margin-bottom: 9.75rem;
+	}
+`;

@@ -18,7 +18,7 @@ export function Home() {
 				<div>
 					<div>
 						<h2>Find the perfect coffee</h2>
-						<h2> to move you all day long</h2>
+						<h2>to move you all day long</h2>
 						<p>
 							With Coffee Delivery, you can receive your coffee wherever you are
 							at any time
@@ -33,7 +33,7 @@ export function Home() {
 						<CoffeeDeliveryAdvantages
 							icon={<Package color='white' weight='fill' />}
 							iconBgColor={theme['base-text']}
-							text='Package keeps the coffee intact'
+							text='The package keeps the coffee intact'
 						/>
 						<CoffeeDeliveryAdvantages
 							icon={<Timer color='white' weight='fill' />}
@@ -51,7 +51,18 @@ export function Home() {
 			</MainWrapper>
 
 			<CoffeeProductsAvailable>
-				{/* <CoffeeDetails /> */}
+				<h3>Our coffees</h3>
+				<div>
+					<CoffeeDetails />
+					<CoffeeDetails />
+					<CoffeeDetails />
+					<CoffeeDetails />
+					<CoffeeDetails />
+					<CoffeeDetails />
+					<CoffeeDetails />
+					<CoffeeDetails />
+					<CoffeeDetails />
+				</div>
 			</CoffeeProductsAvailable>
 		</main>
 	);
