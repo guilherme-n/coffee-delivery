@@ -1,6 +1,13 @@
-import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react';
+import {
+	Coffee as CoffeeIcon,
+	Package,
+	ShoppingCart,
+	Timer,
+} from 'phosphor-react';
+import { useEffect } from 'react';
 import { useTheme } from 'styled-components';
 import coffeeCupSample from '../../assets/coffee-cup-sample.svg';
+import { useCoffee } from '../../hooks/CoffeeContext';
 import { CoffeeDeliveryAdvantages } from './components/CoffeeDeliveryAdvantages';
 import { CoffeeDetails } from './components/CoffeeDetails';
 import {
@@ -8,9 +15,26 @@ import {
 	CoffeeProductsAvailable,
 	MainWrapper,
 } from './styles';
+import latte from '../../assets/coffeeTypes/latte.svg';
 
 export function Home() {
 	const theme = useTheme();
+	const { coffees, setCoffees } = useCoffee();
+
+	useEffect(() => {
+		setCoffees((coffees) => [
+			...coffees,
+			{
+				id: '20',
+				amount: 9,
+				description: 'test description',
+				details: ['no detail'],
+				imgSrc: latte,
+				name: '',
+				price: 6.6,
+			},
+		]);
+	}, []);
 
 	return (
 		<main>
@@ -41,7 +65,7 @@ export function Home() {
 							text='Fast and tracked delivery'
 						/>
 						<CoffeeDeliveryAdvantages
-							icon={<Coffee color='white' weight='fill' />}
+							icon={<CoffeeIcon color='white' weight='fill' />}
 							iconBgColor={theme['purple-dark']}
 							text='You get the coffee pretty fresh'
 						/>
@@ -53,15 +77,9 @@ export function Home() {
 			<CoffeeProductsAvailable>
 				<h3>Our coffees</h3>
 				<div>
-					<CoffeeDetails />
-					<CoffeeDetails />
-					<CoffeeDetails />
-					<CoffeeDetails />
-					<CoffeeDetails />
-					<CoffeeDetails />
-					<CoffeeDetails />
-					<CoffeeDetails />
-					<CoffeeDetails />
+					{coffees.map((coffee) => (
+						<CoffeeDetails key={coffee.id} coffee={coffee} />
+					))}
 				</div>
 			</CoffeeProductsAvailable>
 		</main>

@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 1.5rem 1.125rem 1.5rem;
+	padding: 0 1rem 1.125rem 1rem;
 
 	img {
 		width: 7.5rem;
@@ -52,7 +52,7 @@ export const PriceAndAmountContainer = styled.div`
 	width: 100%;
 	justify-content: space-between;
 	align-items: center;
-	padding-top: 2rem;
+	padding: 2rem 0.5rem 0 0.5rem;
 
 	div:last-child {
 		display: flex;

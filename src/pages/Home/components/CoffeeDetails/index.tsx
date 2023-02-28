@@ -1,6 +1,6 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react';
 import { useTheme } from 'styled-components';
-import mocaccino from '../../../../assets/coffeeTypes/mocaccino.svg';
+import { Coffee } from '../../../../types/coffee';
 import {
 	Wrapper,
 	PillShapesContainer,
@@ -10,22 +10,44 @@ import {
 	CartContainer,
 } from './style';
 
-export function CoffeeDetails() {
+interface CoffeeDetailsProps {
+	coffee: Coffee;
+}
+
+const getImageAltName = (path: string) => {
+	const regex = /[\/][a-z|-]+\.svg/;
+	const result = path.match(regex);
+
+	if (result) {
+		return result[0].replace('.svg', '').replace('/', '');
+	}
+
+	return '';
+};
+
+const getPriceWithComma = (price: number) => {
+	return price.toFixed(2).replace('.', ',');
+};
+
+export function CoffeeDetails({ coffee }: CoffeeDetailsProps) {
 	const theme = useTheme();
+
+	const { amount, description, details, imgSrc, name, price } = coffee;
 
 	return (
 		<Wrapper>
-			<img src={mocaccino} alt='mocaccino' />
+			<img src={imgSrc} alt={getImageAltName(imgSrc)} />
 			<PillShapesContainer>
-				<span>traditional</span>
-				<span>with milk</span>
+				{details.map((detail, i) => (
+					<span key={i}>{detail}</span>
+				))}
 			</PillShapesContainer>
-			<h5>Mocaccino</h5>
-			<p>Express coffee with chocolate syrup, some milk and foam</p>
+			<h5>{name}</h5>
+			<p>{description}</p>
 			<PriceAndAmountContainer>
 				<PriceLabels>
 					<span>R$</span>
-					<span>9,90</span>
+					<span>{getPriceWithComma(price)}</span>
 				</PriceLabels>
 
 				<div>
@@ -33,7 +55,7 @@ export function CoffeeDetails() {
 						<button>
 							<Minus weight='bold' size={14} />
 						</button>
-						<span>1</span>
+						<span>{amount}</span>
 						<button>
 							<Plus weight='bold' size={14} />
 						</button>
