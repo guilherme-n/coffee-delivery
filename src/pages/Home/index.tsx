@@ -4,7 +4,6 @@ import {
 	ShoppingCart,
 	Timer,
 } from 'phosphor-react';
-import { useEffect } from 'react';
 import { useTheme } from 'styled-components';
 import coffeeCupSample from '../../assets/coffee-cup-sample.svg';
 import { useCoffee } from '../../hooks/CoffeeContext';
@@ -15,26 +14,10 @@ import {
 	CoffeeProductsAvailable,
 	MainWrapper,
 } from './styles';
-import latte from '../../assets/coffeeTypes/latte.svg';
 
 export function Home() {
 	const theme = useTheme();
 	const { coffees, setCoffees } = useCoffee();
-
-	useEffect(() => {
-		setCoffees((coffees) => [
-			...coffees,
-			{
-				id: '20',
-				amount: 9,
-				description: 'test description',
-				details: ['no detail'],
-				imgSrc: latte,
-				name: '',
-				price: 6.6,
-			},
-		]);
-	}, []);
 
 	return (
 		<main>
