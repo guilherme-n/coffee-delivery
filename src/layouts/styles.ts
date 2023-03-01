@@ -9,6 +9,15 @@ export const Wrapper = styled.nav`
 		display: flex;
 		gap: 1.5rem;
 	}
+
+	div a {
+		padding: 0.5rem;
+		display: flex;
+		align-items: center;
+		border-radius: 6px;
+		background-color: ${(props) => props.theme['yellow-light']};
+		color: ${(props) => props.theme['yellow-dark']};
+	}
 `;
 
 export const Location = styled.div`
@@ -19,12 +28,4 @@ export const Location = styled.div`
 	border-radius: 6px;
 	background-color: ${(props) => props.theme['purple-light']};
 	color: ${(props) => props.theme['purple-dark']};
-`;
-
-export const Cart = styled.div`
-	display: flex;
-	padding: 0.5rem;
-	border-radius: 6px;
-	background-color: ${(props) => props.theme['yellow-light']};
-	color: ${(props) => props.theme['yellow-dark']};
 `;
