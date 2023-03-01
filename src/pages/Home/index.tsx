@@ -19,6 +19,29 @@ export function Home() {
 	const theme = useTheme();
 	const { coffees, setCoffees } = useCoffee();
 
+	const handleDecreaseAmount = (id: string) => {
+		setCoffees((coffees) => {
+			const coffeesWithNewAmount = coffees.map((c) => {
+				if (c.id === id) {
+					return { ...c, amount: c.amount - 1 };
+				} else return c;
+			});
+
+			return [...coffeesWithNewAmount];
+		});
+	};
+	const handleIncreaseAmount = (id: string) => {
+		setCoffees((coffees) => {
+			const coffeesWithNewAmount = coffees.map((c) => {
+				if (c.id === id) {
+					return { ...c, amount: c.amount + 1 };
+				} else return c;
+			});
+
+			return [...coffeesWithNewAmount];
+		});
+	};
+
 	return (
 		<main>
 			<MainWrapper>
@@ -60,9 +83,16 @@ export function Home() {
 			<CoffeeProductsAvailable>
 				<h3>Our coffees</h3>
 				<div>
-					{coffees.map((coffee) => (
-						<CoffeeDetails key={coffee.id} coffee={coffee} />
-					))}
+					{coffees.map((coffee) => {
+						return (
+							<CoffeeDetails
+								key={coffee.id}
+								coffee={coffee}
+								onDecreaseAmount={handleDecreaseAmount}
+								onIncreaseAmount={handleIncreaseAmount}
+							/>
+						);
+					})}
 				</div>
 			</CoffeeProductsAvailable>
 		</main>

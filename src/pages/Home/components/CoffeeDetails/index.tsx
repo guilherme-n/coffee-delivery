@@ -12,6 +12,8 @@ import {
 
 interface CoffeeDetailsProps {
 	coffee: Coffee;
+	onDecreaseAmount: (id: string) => void;
+	onIncreaseAmount: (id: string) => void;
 }
 
 const getImageAltName = (path: string) => {
@@ -29,10 +31,14 @@ const getPriceWithComma = (price: number) => {
 	return price.toFixed(2).replace('.', ',');
 };
 
-export function CoffeeDetails({ coffee }: CoffeeDetailsProps) {
+export function CoffeeDetails({
+	coffee,
+	onDecreaseAmount,
+	onIncreaseAmount,
+}: CoffeeDetailsProps) {
 	const theme = useTheme();
 
-	const { amount, description, details, imgSrc, name, price } = coffee;
+	const { id, amount, description, details, imgSrc, name, price } = coffee;
 
 	return (
 		<Wrapper>
@@ -52,11 +58,14 @@ export function CoffeeDetails({ coffee }: CoffeeDetailsProps) {
 
 				<div>
 					<AmountButtons>
-						<button>
+						<button
+							disabled={amount === 0}
+							onClick={() => onDecreaseAmount(id)}
+						>
 							<Minus weight='bold' size={14} />
 						</button>
 						<span>{amount}</span>
-						<button>
+						<button onClick={() => onIncreaseAmount(id)}>
 							<Plus weight='bold' size={14} />
 						</button>
 					</AmountButtons>
