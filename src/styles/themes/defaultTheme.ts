@@ -20,4 +20,16 @@ export const defaultTheme: Theme = {
 	'base-button': '#e6e5e5',
 	'base-input': '#ededed',
 	'base-card': '#f3f2f2',
+
+	fontSize: {
+		'title-xs': '1.125rem',
+		'title-s': '1.25rem',
+		'title-m': '1.5rem',
+		'title-l': '2rem',
+		'title-xl': '3rem',
+
+		'text-s': '0.875rem',
+		'text-m': '1rem',
+		'text-l': '1.25rem',
+	},
 };

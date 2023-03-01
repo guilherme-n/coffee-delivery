@@ -18,4 +18,16 @@ export interface Theme {
 	'base-button': string;
 	'base-input': string;
 	'base-card': string;
+
+	fontSize: {
+		'title-xs': string;
+		'title-s': string;
+		'title-m': string;
+		'title-l': string;
+		'title-xl': string;
+
+		'text-l': string;
+		'text-m': string;
+		'text-s': string;
+	};
 }
