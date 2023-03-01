@@ -5,21 +5,34 @@ import {
 	MapPin,
 	Money,
 } from 'phosphor-react';
+import { useState } from 'react';
 import { Input } from '../../components/Input';
 import {
 	FormContainer,
-	DeliveryAddress,
-	AddressLabels,
+	SlightlyRoundedContainer,
+	IconAndLabel,
 	AddressInputList,
+	PaymentOptionsContainer,
+	PaymentOption,
 } from './styles';
 
+export type PaymentMethod = 'CreditCard' | 'DebitCard' | 'Money';
+
 export function Checkout() {
+	const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(
+		null
+	);
+
+	const handlePaymentMethodClick = (PaymentMethod: PaymentMethod) => {
+		setPaymentMethod(PaymentMethod);
+	};
+
 	return (
 		<FormContainer>
 			<div>
 				<h4>Complete your order</h4>
-				<DeliveryAddress>
-					<AddressLabels>
+				<SlightlyRoundedContainer>
+					<IconAndLabel iconColor='yellow'>
 						<MapPin size={22} />
 						<div>
 							<span>Delivery address</span>
@@ -27,7 +40,7 @@ export function Checkout() {
 								Enter the address that you would like to get your order
 							</span>
 						</div>
-					</AddressLabels>
+					</IconAndLabel>
 
 					<AddressInputList>
 						<Input fieldName='zip' type='number' placeholder='Zip' />
@@ -43,33 +56,42 @@ export function Checkout() {
 
 						<Input fieldName='state' placeholder='State' />
 					</AddressInputList>
-				</DeliveryAddress>
+				</SlightlyRoundedContainer>
 
-				<div>
-					<div>
-						<CurrencyDollar />
+				<SlightlyRoundedContainer>
+					<IconAndLabel iconColor='purple'>
+						<CurrencyDollar size={22} />
 						<div>
-							<span>Delivery address</span>
+							<span>Payment</span>
 							<span>
-								Enter the address that you would like to get your order
+								Pay only when you get your order. Pick one option below.
 							</span>
 						</div>
-					</div>
-					<div>
-						<div>
+					</IconAndLabel>
+					<PaymentOptionsContainer>
+						<PaymentOption
+							selected={paymentMethod === 'CreditCard'}
+							onClick={() => handlePaymentMethodClick('CreditCard')}
+						>
 							<CreditCard />
 							<span>credit card</span>
-						</div>
-						<div>
+						</PaymentOption>
+						<PaymentOption
+							selected={paymentMethod === 'DebitCard'}
+							onClick={() => handlePaymentMethodClick('DebitCard')}
+						>
 							<Bank />
 							<span>debit card</span>
-						</div>
-						<div>
+						</PaymentOption>
+						<PaymentOption
+							selected={paymentMethod === 'Money'}
+							onClick={() => handlePaymentMethodClick('Money')}
+						>
 							<Money />
 							<span>money</span>
-						</div>
-					</div>
-				</div>
+						</PaymentOption>
+					</PaymentOptionsContainer>
+				</SlightlyRoundedContainer>
 			</div>
 			<div></div>
 		</FormContainer>

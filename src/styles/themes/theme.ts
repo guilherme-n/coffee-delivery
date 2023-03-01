@@ -29,5 +29,8 @@ export interface Theme {
 		'text-l': string;
 		'text-m': string;
 		'text-s': string;
+
+		'button-s': string;
+		'button-g': string;
 	};
 }

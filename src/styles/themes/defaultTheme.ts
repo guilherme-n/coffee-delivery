@@ -31,5 +31,8 @@ export const defaultTheme: Theme = {
 		'text-s': '0.875rem',
 		'text-m': '1rem',
 		'text-l': '1.25rem',
+
+		'button-s': '0.875rem',
+		'button-g': '0.75rem',
 	},
 };
