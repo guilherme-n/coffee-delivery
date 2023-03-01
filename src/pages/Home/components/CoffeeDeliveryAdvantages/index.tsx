@@ -1,9 +1,11 @@
 import { ReactNode } from 'react';
 import { Wrapper } from './styles';
 
+export type IconBgColor = 'Yellow' | 'YellowDark' | 'Gray' | 'Purple';
+
 interface CoffeeDeliveryAdvantagesProps {
 	icon: ReactNode;
-	iconBgColor: string;
+	iconBgColor: IconBgColor;
 	text: string;
 }
 

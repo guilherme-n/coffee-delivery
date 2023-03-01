@@ -4,7 +4,6 @@ import {
 	ShoppingCart,
 	Timer,
 } from 'phosphor-react';
-import { useTheme } from 'styled-components';
 import coffeeCupSample from '../../assets/coffee-cup-sample.svg';
 import { useCoffee } from '../../hooks/CoffeeContext';
 import { CoffeeDeliveryAdvantages } from './components/CoffeeDeliveryAdvantages';
@@ -16,7 +15,6 @@ import {
 } from './styles';
 
 export function Home() {
-	const theme = useTheme();
 	const { coffees, setCoffees } = useCoffee();
 
 	const handleDecreaseAmount = (id: string) => {
@@ -57,22 +55,22 @@ export function Home() {
 					<CoffeeDeliveryAdvantagesList>
 						<CoffeeDeliveryAdvantages
 							icon={<ShoppingCart color='white' />}
-							iconBgColor={theme['yellow-dark']}
+							iconBgColor='YellowDark'
 							text='Simple and safe shopping'
 						/>
 						<CoffeeDeliveryAdvantages
 							icon={<Package color='white' weight='fill' />}
-							iconBgColor={theme['base-text']}
+							iconBgColor='Gray'
 							text='The package keeps the coffee intact'
 						/>
 						<CoffeeDeliveryAdvantages
 							icon={<Timer color='white' weight='fill' />}
-							iconBgColor={theme['yellow']}
+							iconBgColor='Yellow'
 							text='Fast and tracked delivery'
 						/>
 						<CoffeeDeliveryAdvantages
 							icon={<CoffeeIcon color='white' weight='fill' />}
-							iconBgColor={theme['purple-dark']}
+							iconBgColor='Purple'
 							text='You get the coffee pretty fresh'
 						/>
 					</CoffeeDeliveryAdvantagesList>
