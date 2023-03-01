@@ -104,4 +104,5 @@ export const CartContainer = styled.div`
 	padding: 0.5rem;
 	border-radius: 6px;
 	display: flex;
+	color: ${(props) => props.theme['white']};
 `;

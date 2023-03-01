@@ -1,5 +1,4 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react';
-import { useTheme } from 'styled-components';
 import { Coffee } from '../../../../types/coffee';
 import {
 	Wrapper,
@@ -36,8 +35,6 @@ export function CoffeeDetails({
 	onDecreaseAmount,
 	onIncreaseAmount,
 }: CoffeeDetailsProps) {
-	const theme = useTheme();
-
 	const { id, amount, description, details, imgSrc, name, price } = coffee;
 
 	return (
@@ -71,7 +68,7 @@ export function CoffeeDetails({
 					</AmountButtons>
 
 					<CartContainer>
-						<ShoppingCart weight='fill' color={theme.white} size={22} />
+						<ShoppingCart weight='fill' size={22} />
 					</CartContainer>
 				</div>
 			</PriceAndAmountContainer>
