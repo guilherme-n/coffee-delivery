@@ -1,18 +1,17 @@
-import { Minus, Plus, ShoppingCart } from 'phosphor-react';
+import { ShoppingCart } from 'phosphor-react';
+import { AmountButtons } from '../../../../components/AmountButtons';
+import { useCoffee } from '../../../../hooks/CoffeeContext';
 import { Coffee } from '../../../../types/coffee';
 import {
 	Wrapper,
 	PillShapesContainer,
 	PriceAndAmountContainer,
 	PriceLabels,
-	AmountButtons,
 	CartContainer,
-} from './style';
+} from './styles';
 
 interface CoffeeDetailsProps {
 	coffee: Coffee;
-	onDecreaseAmount: (id: string) => void;
-	onIncreaseAmount: (id: string) => void;
 }
 
 const getImageAltName = (path: string) => {
@@ -30,12 +29,9 @@ const getPriceWithComma = (price: number) => {
 	return price.toFixed(2).replace('.', ',');
 };
 
-export function CoffeeDetails({
-	coffee,
-	onDecreaseAmount,
-	onIncreaseAmount,
-}: CoffeeDetailsProps) {
+export function CoffeeDetails({ coffee }: CoffeeDetailsProps) {
 	const { id, amount, description, details, imgSrc, name, price } = coffee;
+	const { addCoffee, removeCoffee } = useCoffee();
 
 	return (
 		<Wrapper>
@@ -54,18 +50,12 @@ export function CoffeeDetails({
 				</PriceLabels>
 
 				<div>
-					<AmountButtons>
-						<button
-							disabled={amount === 0}
-							onClick={() => onDecreaseAmount(id)}
-						>
-							<Minus weight='bold' size={14} />
-						</button>
-						<span>{amount}</span>
-						<button onClick={() => onIncreaseAmount(id)}>
-							<Plus weight='bold' size={14} />
-						</button>
-					</AmountButtons>
+					<AmountButtons
+						id={id}
+						amount={amount}
+						onDecreaseAmount={removeCoffee}
+						onIncreaseAmount={addCoffee}
+					/>
 
 					<CartContainer>
 						<ShoppingCart weight='fill' size={22} />

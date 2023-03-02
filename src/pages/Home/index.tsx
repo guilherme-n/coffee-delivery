@@ -15,30 +15,7 @@ import {
 } from './styles';
 
 export function Home() {
-	const { coffees, setCoffees } = useCoffee();
-
-	const handleDecreaseAmount = (id: string) => {
-		setCoffees((coffees) => {
-			const coffeesWithNewAmount = coffees.map((c) => {
-				if (c.id === id) {
-					return { ...c, amount: c.amount - 1 };
-				} else return c;
-			});
-
-			return [...coffeesWithNewAmount];
-		});
-	};
-	const handleIncreaseAmount = (id: string) => {
-		setCoffees((coffees) => {
-			const coffeesWithNewAmount = coffees.map((c) => {
-				if (c.id === id) {
-					return { ...c, amount: c.amount + 1 };
-				} else return c;
-			});
-
-			return [...coffeesWithNewAmount];
-		});
-	};
+	const { coffees } = useCoffee();
 
 	return (
 		<main>
@@ -82,14 +59,7 @@ export function Home() {
 				<h3>Our coffees</h3>
 				<div>
 					{coffees.map((coffee) => {
-						return (
-							<CoffeeDetails
-								key={coffee.id}
-								coffee={coffee}
-								onDecreaseAmount={handleDecreaseAmount}
-								onIncreaseAmount={handleIncreaseAmount}
-							/>
-						);
+						return <CoffeeDetails key={coffee.id} coffee={coffee} />;
 					})}
 				</div>
 			</CoffeeProductsAvailable>

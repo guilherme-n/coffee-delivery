@@ -10,7 +10,7 @@ export const FormContainer = styled.form`
 		margin-bottom: 1rem;
 	}
 
-	& > div:first-child {
+	& > div {
 		display: flex;
 		flex-direction: column;
 		gap: 0.75rem;
@@ -86,10 +86,9 @@ export const PaymentOption = styled.button.attrs({
 	background: ${(props) => props.theme['base-button']};
 	text-transform: uppercase;
 	padding: 1rem;
-	border-radius: 6px;
 	width: 11.125rem;
-
 	border: 1px solid transparent;
+	border-radius: 6px;
 
 	${(props) => {
 		if (props.selected) {
@@ -112,4 +111,11 @@ export const PaymentOption = styled.button.attrs({
 		color: ${(props) => props.theme['base-text']};
 		font-size: ${(props) => props.theme.fontSize['button-s']};
 	}
+`;
+
+export const TwoBigRoundsContainer = styled.div`
+	background: ${(props) => props.theme['base-card']};
+	padding: 2.5rem;
+	width: 448px;
+	border-radius: 6px 44px;
 `;

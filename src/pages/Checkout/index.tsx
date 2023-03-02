@@ -7,6 +7,8 @@ import {
 } from 'phosphor-react';
 import { useState } from 'react';
 import { Input } from '../../components/Input';
+import { useCoffee } from '../../hooks/CoffeeContext';
+import { CoffeeDetailsCheckout } from './components/CoffeeDetailsCheckout';
 import {
 	FormContainer,
 	SlightlyRoundedContainer,
@@ -14,6 +16,7 @@ import {
 	AddressInputList,
 	PaymentOptionsContainer,
 	PaymentOption,
+	TwoBigRoundsContainer,
 } from './styles';
 
 export type PaymentMethod = 'CreditCard' | 'DebitCard' | 'Money';
@@ -22,6 +25,7 @@ export function Checkout() {
 	const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(
 		null
 	);
+	const { coffees } = useCoffee();
 
 	const handlePaymentMethodClick = (PaymentMethod: PaymentMethod) => {
 		setPaymentMethod(PaymentMethod);
@@ -93,7 +97,31 @@ export function Checkout() {
 					</PaymentOptionsContainer>
 				</SlightlyRoundedContainer>
 			</div>
-			<div></div>
+			<div>
+				<h4>Selected coffees</h4>
+				<TwoBigRoundsContainer>
+					{coffees.map((coffee) => {
+						if (coffee.amount > 0) {
+							return <CoffeeDetailsCheckout coffee={coffee} key={coffee.id} />;
+						}
+					})}
+					<div>
+						<div>
+							<span>Items price</span>
+							<span>R$ 29,70</span>
+						</div>
+						<div>
+							<span>Delivery fee</span>
+							<span>R$ 3,50</span>
+						</div>
+						<div>
+							<span>Total</span>
+							<span>R$ 33,20</span>
+						</div>
+						<button>confirm your order</button>
+					</div>
+				</TwoBigRoundsContainer>
+			</div>
 		</FormContainer>
 	);
 }
