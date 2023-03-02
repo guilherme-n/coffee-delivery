@@ -118,4 +118,47 @@ export const TwoBigRoundsContainer = styled.div`
 	padding: 2.5rem;
 	width: 448px;
 	border-radius: 6px 44px;
+
+	& > button {
+		text-transform: uppercase;
+		border: 0;
+		border-radius: 6px;
+		background: ${(props) => props.theme.yellow};
+		color: ${(props) => props.theme.white};
+		padding: 0.75rem 0.5rem;
+		width: 100%;
+		font-size: ${(props) => props.theme.fontSize['button-g']};
+		line-height: 160%;
+		font-weight: 700;
+
+		:hover {
+			cursor: pointer;
+		}
+	}
+`;
+
+export const PricesLabelList = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	margin: 1.5rem 0;
+`;
+
+const PriceLabelBase = styled.div`
+	display: flex;
+	justify-content: space-between;
+`;
+
+export const PriceLabel = styled(PriceLabelBase)`
+	span:first-child {
+		font-size: ${(props) => props.theme.fontSize['text-s']};
+	}
+	span:last-child {
+		font-size: ${(props) => props.theme.fontSize['text-m']};
+	}
+`;
+
+export const PriceLabelTotal = styled(PriceLabelBase)`
+	font-size: ${(props) => props.theme.fontSize['text-l']};
+	font-weight: bold;
 `;

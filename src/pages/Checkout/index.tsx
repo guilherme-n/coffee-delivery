@@ -5,9 +5,10 @@ import {
 	MapPin,
 	Money,
 } from 'phosphor-react';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Input } from '../../components/Input';
 import { useCoffee } from '../../hooks/CoffeeContext';
+import { Coffee } from '../../types/coffee';
 import { CoffeeDetailsCheckout } from './components/CoffeeDetailsCheckout';
 import {
 	FormContainer,
@@ -17,9 +18,14 @@ import {
 	PaymentOptionsContainer,
 	PaymentOption,
 	TwoBigRoundsContainer,
+	PricesLabelList,
+	PriceLabel,
+	PriceLabelTotal,
 } from './styles';
 
 export type PaymentMethod = 'CreditCard' | 'DebitCard' | 'Money';
+
+const DELIVERY_FEE = 3.5;
 
 export function Checkout() {
 	const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(
@@ -27,12 +33,24 @@ export function Checkout() {
 	);
 	const { coffees } = useCoffee();
 
+	const getTotalPrice = (coffees: Coffee[]) => {
+		return coffees.reduce((prev, curr) => {
+			return prev + curr.price * curr.amount;
+		}, 0);
+	};
+
 	const handlePaymentMethodClick = (PaymentMethod: PaymentMethod) => {
 		setPaymentMethod(PaymentMethod);
 	};
 
+	const handleConfirmOrder = (event: FormEvent) => {
+		event.preventDefault();
+	};
+
+	const itemsPrice = getTotalPrice(coffees);
+
 	return (
-		<FormContainer>
+		<FormContainer onSubmit={handleConfirmOrder}>
 			<div>
 				<h4>Complete your order</h4>
 				<SlightlyRoundedContainer>
@@ -105,21 +123,21 @@ export function Checkout() {
 							return <CoffeeDetailsCheckout coffee={coffee} key={coffee.id} />;
 						}
 					})}
-					<div>
-						<div>
+					<PricesLabelList>
+						<PriceLabel>
 							<span>Items price</span>
-							<span>R$ 29,70</span>
-						</div>
-						<div>
+							<span>R$ {itemsPrice.toFixed(2)}</span>
+						</PriceLabel>
+						<PriceLabel>
 							<span>Delivery fee</span>
-							<span>R$ 3,50</span>
-						</div>
-						<div>
+							<span>R$ {DELIVERY_FEE.toFixed(2)}</span>
+						</PriceLabel>
+						<PriceLabelTotal>
 							<span>Total</span>
-							<span>R$ 33,20</span>
-						</div>
-						<button>confirm your order</button>
-					</div>
+							<span>R$ {(itemsPrice + DELIVERY_FEE).toFixed(2)}</span>
+						</PriceLabelTotal>
+					</PricesLabelList>
+					<button>confirm your order</button>
 				</TwoBigRoundsContainer>
 			</div>
 		</FormContainer>

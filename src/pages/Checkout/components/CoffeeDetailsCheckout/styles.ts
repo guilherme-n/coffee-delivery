@@ -12,6 +12,14 @@ export const Container = styled.div`
 		padding-top: 1.5rem;
 	}
 
+	span {
+		color: ${(props) => props.theme['base-text']};
+	}
+
+	& > span {
+		font-size: ${(props) => props.theme.fontSize['text-m']};
+	}
+
 	img {
 		width: 4rem;
 		height: 4rem;
@@ -51,7 +59,6 @@ export const LabelWithButtons = styled.div`
 			}
 
 			span {
-				color: ${(props) => props.theme['base-text']};
 				text-transform: uppercase;
 				font-size: ${(props) => props.theme.fontSize['button-s']};
 			}
