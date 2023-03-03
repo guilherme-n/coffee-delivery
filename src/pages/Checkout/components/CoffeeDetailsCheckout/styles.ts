@@ -55,7 +55,7 @@ export const LabelWithButtons = styled.div`
 			}
 
 			svg {
-				color: ${(props) => props.theme['purple']};
+				color: ${(props) => props.theme.purple};
 			}
 
 			span {

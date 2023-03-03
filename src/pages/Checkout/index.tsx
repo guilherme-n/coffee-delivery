@@ -5,7 +5,7 @@ import {
 	MapPin,
 	Money,
 } from 'phosphor-react';
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 import { Input } from '../../components/Input';
 import { useCoffee } from '../../hooks/CoffeeContext';
 import { Coffee } from '../../types/coffee';
@@ -23,6 +23,11 @@ import {
 	PriceLabelTotal,
 } from './styles';
 
+import {
+	FormAddressValues,
+	useFormAddress,
+} from '../../hooks/FormAddressContext';
+
 export type PaymentMethod = 'CreditCard' | 'DebitCard' | 'Money';
 
 const DELIVERY_FEE = 3.5;
@@ -32,6 +37,8 @@ export function Checkout() {
 		null
 	);
 	const { coffees } = useCoffee();
+
+	const { handleSubmit } = useFormAddress();
 
 	const getTotalPrice = (coffees: Coffee[]) => {
 		return coffees.reduce((prev, curr) => {
@@ -43,14 +50,14 @@ export function Checkout() {
 		setPaymentMethod(PaymentMethod);
 	};
 
-	const handleConfirmOrder = (event: FormEvent) => {
-		event.preventDefault();
+	const handleConfirmOrder = (data: FormAddressValues) => {
+		alert('data sent');
 	};
 
 	const itemsPrice = getTotalPrice(coffees);
 
 	return (
-		<FormContainer onSubmit={handleConfirmOrder}>
+		<FormContainer onSubmit={handleSubmit(handleConfirmOrder)}>
 			<div>
 				<h4>Complete your order</h4>
 				<SlightlyRoundedContainer>
@@ -65,18 +72,21 @@ export function Checkout() {
 					</IconAndLabel>
 
 					<AddressInputList>
-						<Input fieldName='zip' type='number' placeholder='Zip' />
-						<Input fieldName='street' placeholder='Street' />
-						<Input fieldName='number' placeholder='Number' />
+						<Input fieldName='zip' placeholder='Zip' required minLength={8} />
+						<Input fieldName='street' placeholder='Street' required />
+						<Input fieldName='number' placeholder='Number' required />
 						<Input
-							fieldName='additional-info'
-							type='text'
+							fieldName='additionalInfo'
 							placeholder='Apt / Suite / Other'
 						/>
-						<Input fieldName='neighborhood' placeholder='Neighborhood' />
-						<Input fieldName='city' placeholder='City' />
+						<Input
+							fieldName='neighborhood'
+							placeholder='Neighborhood'
+							required
+						/>
+						{<Input fieldName='city' placeholder='City' required />}
 
-						<Input fieldName='state' placeholder='State' />
+						<Input fieldName='state' placeholder='State' required />
 					</AddressInputList>
 				</SlightlyRoundedContainer>
 

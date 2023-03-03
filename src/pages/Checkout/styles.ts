@@ -64,7 +64,7 @@ export const AddressInputList = styled.div`
 	grid-template-areas:
 		'zip zip zip . . . . .'
 		'street street street street street street street street'
-		'number number number additional-info additional-info additional-info additional-info additional-info'
+		'number number number additionalInfo additionalInfo additionalInfo additionalInfo additionalInfo'
 		'neighborhood neighborhood neighborhood city city city city state';
 `;
 
