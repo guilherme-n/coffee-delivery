@@ -1,10 +1,23 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { Wrapper, Location } from './styles';
 import { MapPin, ShoppingCart } from 'phosphor-react';
+import { Wrapper, Location, CoffeesCountIcon } from './styles';
 
 import logo from '../assets/logo.svg';
+import { useCoffee } from '../hooks/CoffeeContext';
+import { Coffee } from '../types/coffee';
+
+const getCoffeesCount = (coffees: Coffee[]) => {
+	return coffees
+		.filter((c) => c.amount > 0)
+		.reduce((prev, curr) => {
+			return prev + curr.amount;
+		}, 0);
+};
 
 export function DefaultLayout() {
+	const { coffees } = useCoffee();
+	const coffeesCount = getCoffeesCount(coffees);
+
 	return (
 		<>
 			<Wrapper>
@@ -18,6 +31,9 @@ export function DefaultLayout() {
 						<span>Recife, PE</span>
 					</Location>
 					<NavLink to='/checkout'>
+						{coffeesCount > 0 && (
+							<CoffeesCountIcon>{coffeesCount}</CoffeesCountIcon>
+						)}
 						<ShoppingCart size={22} weight='fill' />
 					</NavLink>
 				</div>

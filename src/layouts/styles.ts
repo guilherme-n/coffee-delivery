@@ -17,6 +17,7 @@ export const Wrapper = styled.nav`
 		border-radius: 6px;
 		background-color: ${(props) => props.theme['yellow-light']};
 		color: ${(props) => props.theme['yellow-dark']};
+		position: relative;
 	}
 `;
 
@@ -28,4 +29,21 @@ export const Location = styled.div`
 	border-radius: 6px;
 	background-color: ${(props) => props.theme['purple-light']};
 	color: ${(props) => props.theme['purple-dark']};
+`;
+
+export const CoffeesCountIcon = styled.span`
+	position: absolute;
+	top: -12px;
+	right: -12px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+
+	background: ${(props) => props.theme['yellow-dark']};
+	color: ${(props) => props.theme['white']};
 `;

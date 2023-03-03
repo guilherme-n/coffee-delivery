@@ -58,9 +58,9 @@ export function Home() {
 			<CoffeeProductsAvailable>
 				<h3>Our coffees</h3>
 				<div>
-					{coffees.map((coffee) => {
-						return <CoffeeDetails key={coffee.id} coffee={coffee} />;
-					})}
+					{coffees.map((coffee) => (
+						<CoffeeDetails key={coffee.id} coffee={coffee} />
+					))}
 				</div>
 			</CoffeeProductsAvailable>
 		</main>
