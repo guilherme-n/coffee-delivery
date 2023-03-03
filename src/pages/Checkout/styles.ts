@@ -1,3 +1,4 @@
+import { LabelHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 export const FormContainer = styled.form`
@@ -24,6 +25,10 @@ export const SlightlyRoundedContainer = styled.div`
 	background-color: ${(props) => props.theme['base-card']};
 	border-radius: 6px;
 	gap: 2rem;
+
+	& > span {
+		color: red;
+	}
 `;
 
 interface IconAndLabelProps {
@@ -73,16 +78,12 @@ export const PaymentOptionsContainer = styled.div`
 	justify-content: space-between;
 `;
 
-interface PaymentOptionProps {
-	selected: boolean;
+interface PaymentOptionProps extends LabelHTMLAttributes<HTMLLabelElement> {
+	checked: boolean;
 }
-
-export const PaymentOption = styled.button.attrs({
-	type: 'button',
-})<PaymentOptionProps>`
+export const PaymentOption = styled.label<PaymentOptionProps>`
 	display: flex;
 	gap: 0.75rem;
-
 	background: ${(props) => props.theme['base-button']};
 	text-transform: uppercase;
 	padding: 1rem;
@@ -90,8 +91,12 @@ export const PaymentOption = styled.button.attrs({
 	border: 1px solid transparent;
 	border-radius: 6px;
 
+	:hover {
+		cursor: pointer;
+	}
+
 	${(props) => {
-		if (props.selected) {
+		if (props.checked) {
 			return {
 				background: props.theme['purple-light'],
 				border: `1px solid ${props.theme['purple']}`,
@@ -99,8 +104,9 @@ export const PaymentOption = styled.button.attrs({
 		}
 	}}
 
-	&:hover {
-		cursor: pointer;
+	input {
+		visibility: hidden;
+		display: none;
 	}
 
 	svg {
@@ -133,6 +139,10 @@ export const TwoBigRoundsContainer = styled.div`
 
 		:hover {
 			cursor: pointer;
+		}
+
+		:disabled {
+			cursor: not-allowed;
 		}
 	}
 `;

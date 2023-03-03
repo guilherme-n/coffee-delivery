@@ -9,9 +9,8 @@ export interface FormAddressValues {
 	neighborhood: string;
 	city: string;
 	state: string;
+	paymentMethod: string;
 }
-
-type test = keyof FormAddressValues;
 
 export const FormAddressProvider = ({ children }: { children: ReactNode }) => {
 	const methods = useForm<FormAddressValues>();

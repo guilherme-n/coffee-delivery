@@ -33,7 +33,12 @@ export const CoffeeProvider = ({ children }: CoffeeProviderProps) => {
 
 	return (
 		<CoffeesContext.Provider
-			value={{ coffees, addCoffee, removeCoffee, removeAllCoffees }}
+			value={{
+				coffees,
+				addCoffee,
+				removeCoffee,
+				removeAllCoffees,
+			}}
 		>
 			{children}
 		</CoffeesContext.Provider>

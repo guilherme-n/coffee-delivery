@@ -36,9 +36,16 @@ export function Checkout() {
 	const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(
 		null
 	);
+
+	const {
+		handleSubmit,
+		register,
+		formState: { errors },
+	} = useFormAddress();
+
 	const { coffees } = useCoffee();
 
-	const { handleSubmit } = useFormAddress();
+	const coffeesInCart = coffees.filter((c) => c.amount > 0);
 
 	const getTotalPrice = (coffees: Coffee[]) => {
 		return coffees.reduce((prev, curr) => {
@@ -50,11 +57,11 @@ export function Checkout() {
 		setPaymentMethod(PaymentMethod);
 	};
 
-	const handleConfirmOrder = (data: FormAddressValues) => {
-		alert('data sent');
-	};
+	const handleConfirmOrder = (data: FormAddressValues) => {};
 
-	const itemsPrice = getTotalPrice(coffees);
+	const itemsPrice = getTotalPrice(coffeesInCart);
+
+	const paymentMethodError = !!errors.paymentMethod;
 
 	return (
 		<FormContainer onSubmit={handleSubmit(handleConfirmOrder)}>
@@ -72,21 +79,40 @@ export function Checkout() {
 					</IconAndLabel>
 
 					<AddressInputList>
-						<Input fieldName='zip' placeholder='Zip' required minLength={8} />
-						<Input fieldName='street' placeholder='Street' required />
-						<Input fieldName='number' placeholder='Number' required />
+						<Input
+							fieldName='zip'
+							placeholder='Zip'
+							required
+							minLength={8}
+							tabIndex={1}
+						/>
+						<Input
+							fieldName='street'
+							placeholder='Street'
+							tabIndex={1}
+							required
+						/>
+						<Input
+							fieldName='number'
+							placeholder='Number'
+							tabIndex={1}
+							required
+						/>
 						<Input
 							fieldName='additionalInfo'
 							placeholder='Apt / Suite / Other'
+							tabIndex={1}
 						/>
 						<Input
 							fieldName='neighborhood'
 							placeholder='Neighborhood'
+							tabIndex={1}
 							required
 						/>
-						{<Input fieldName='city' placeholder='City' required />}
 
-						<Input fieldName='state' placeholder='State' required />
+						<Input fieldName='city' placeholder='City' tabIndex={1} required />
+
+						<Input fieldName='state' placeholder='St.' tabIndex={1} required />
 					</AddressInputList>
 				</SlightlyRoundedContainer>
 
@@ -102,33 +128,55 @@ export function Checkout() {
 					</IconAndLabel>
 					<PaymentOptionsContainer>
 						<PaymentOption
-							selected={paymentMethod === 'CreditCard'}
 							onClick={() => handlePaymentMethodClick('CreditCard')}
+							checked={paymentMethod === 'CreditCard'}
+							tabIndex={2}
 						>
 							<CreditCard />
+							<input
+								{...register('paymentMethod', { required: true })}
+								type='radio'
+								id='credit-card'
+								value='credit-card'
+							/>
 							<span>credit card</span>
 						</PaymentOption>
 						<PaymentOption
-							selected={paymentMethod === 'DebitCard'}
 							onClick={() => handlePaymentMethodClick('DebitCard')}
+							checked={paymentMethod === 'DebitCard'}
+							tabIndex={2}
 						>
 							<Bank />
+							<input
+								{...register('paymentMethod')}
+								type='radio'
+								id='debit-card'
+								value='debit-card'
+							/>
 							<span>debit card</span>
 						</PaymentOption>
 						<PaymentOption
-							selected={paymentMethod === 'Money'}
 							onClick={() => handlePaymentMethodClick('Money')}
+							checked={paymentMethod === 'Money'}
+							tabIndex={2}
 						>
 							<Money />
-							<span>money</span>
+							<input
+								{...register('paymentMethod')}
+								type='radio'
+								id='money'
+								value='money'
+							/>
+							<span>Money</span>
 						</PaymentOption>
 					</PaymentOptionsContainer>
+					{paymentMethodError && <span>Choose a payment method</span>}
 				</SlightlyRoundedContainer>
 			</div>
 			<div>
 				<h4>Selected coffees</h4>
 				<TwoBigRoundsContainer>
-					{coffees.map((coffee) => {
+					{coffeesInCart.map((coffee) => {
 						if (coffee.amount > 0) {
 							return <CoffeeDetailsCheckout coffee={coffee} key={coffee.id} />;
 						}
@@ -147,7 +195,10 @@ export function Checkout() {
 							<span>R$ {(itemsPrice + DELIVERY_FEE).toFixed(2)}</span>
 						</PriceLabelTotal>
 					</PricesLabelList>
-					<button>confirm your order</button>
+
+					<button tabIndex={3} disabled={coffeesInCart.length === 0}>
+						place order
+					</button>
 				</TwoBigRoundsContainer>
 			</div>
 		</FormContainer>
