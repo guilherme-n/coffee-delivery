@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.nav`
+export const Container = styled.nav`
 	padding: 2rem 0;
 	display: flex;
 	justify-content: space-between;

@@ -1,5 +1,5 @@
 import { Minus, Plus } from 'phosphor-react';
-import { Wrapper } from './styles';
+import { Container } from './styles';
 
 interface AmountButtonsProps {
 	id: string;
@@ -19,7 +19,7 @@ export function AmountButtons(props: AmountButtonsProps) {
 	} = props;
 
 	return (
-		<Wrapper>
+		<Container>
 			<button
 				disabled={amount === 0 || disabledDecreaseButton}
 				onClick={() => onDecreaseAmount(id)}
@@ -31,6 +31,6 @@ export function AmountButtons(props: AmountButtonsProps) {
 			<button onClick={() => onIncreaseAmount(id)} type='button'>
 				<Plus weight='bold' size={14} />
 			</button>
-		</Wrapper>
+		</Container>
 	);
 }

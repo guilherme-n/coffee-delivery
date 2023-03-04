@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MainWrapper = styled.div`
+export const MainContainer = styled.div`
 	display: flex;
 	padding: 5.75rem 0;
 	gap: 3.5rem;

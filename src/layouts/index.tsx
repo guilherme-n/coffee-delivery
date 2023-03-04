@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { MapPin, ShoppingCart } from 'phosphor-react';
-import { Wrapper, Location, CoffeesCountIcon } from './styles';
+import { Container, Location, CoffeesCountIcon } from './styles';
 
 import logo from '../assets/logo.svg';
 import { useCoffee } from '../hooks/CoffeeContext';
@@ -20,7 +20,7 @@ export function DefaultLayout() {
 
 	return (
 		<>
-			<Wrapper>
+			<Container>
 				<NavLink to='/'>
 					<img src={logo} alt='logo' />
 				</NavLink>
@@ -37,7 +37,7 @@ export function DefaultLayout() {
 						<ShoppingCart size={22} weight='fill' />
 					</NavLink>
 				</div>
-			</Wrapper>
+			</Container>
 			<Outlet />
 		</>
 	);

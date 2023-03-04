@@ -59,7 +59,6 @@ export function Checkout() {
 	};
 
 	const handleConfirmOrder = (data: FormAddressValues) => {
-		alert('submitting data');
 		clearCart();
 		navigate({ pathname: '/success' });
 	};

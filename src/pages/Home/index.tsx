@@ -11,7 +11,7 @@ import { IconWithOneOrTwoLines } from '../../components/IconWithOneOrTwoTexts';
 import {
 	CoffeeDeliveryAdvantagesList,
 	CoffeeProductsAvailable,
-	MainWrapper,
+	MainContainer,
 } from './styles';
 
 export function Home() {
@@ -19,7 +19,7 @@ export function Home() {
 
 	return (
 		<main>
-			<MainWrapper>
+			<MainContainer>
 				<div>
 					<div>
 						<h2>Find the perfect coffee</h2>
@@ -53,7 +53,7 @@ export function Home() {
 					</CoffeeDeliveryAdvantagesList>
 				</div>
 				<img src={coffeeCupSample} />
-			</MainWrapper>
+			</MainContainer>
 
 			<CoffeeProductsAvailable>
 				<h3>Our coffees</h3>

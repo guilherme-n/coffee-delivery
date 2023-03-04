@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
 	background-color: ${(props) => props.theme['base-card']};
 	width: 16rem;
 	height: 19.375rem;

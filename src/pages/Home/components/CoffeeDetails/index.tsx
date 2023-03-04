@@ -3,7 +3,7 @@ import { AmountButtons } from '../../../../components/AmountButtons';
 import { useCoffee } from '../../../../hooks/CoffeeContext';
 import { Coffee } from '../../../../types/coffee';
 import {
-	Wrapper,
+	Container,
 	PillShapesContainer,
 	PriceAndAmountContainer,
 	PriceLabels,
@@ -34,7 +34,7 @@ export function CoffeeDetails({ coffee }: CoffeeDetailsProps) {
 	const { addCoffee, removeCoffee } = useCoffee();
 
 	return (
-		<Wrapper>
+		<Container>
 			<img src={imgSrc} alt={getImageAltName(imgSrc)} />
 			<PillShapesContainer>
 				{details.map((detail, i) => (
@@ -62,6 +62,6 @@ export function CoffeeDetails({ coffee }: CoffeeDetailsProps) {
 					</CartContainer>
 				</div>
 			</PriceAndAmountContainer>
-		</Wrapper>
+		</Container>
 	);
 }

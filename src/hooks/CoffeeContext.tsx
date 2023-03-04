@@ -18,7 +18,13 @@ interface CoffeeProviderProps {
 }
 
 export const CoffeeProvider = ({ children }: CoffeeProviderProps) => {
-	const [coffees, dispatch] = useReducer(coffeesReducer, coffeesList);
+	const [coffees, dispatch] = useReducer(
+		coffeesReducer,
+		coffeesList,
+		(c: Coffee[]) => {
+			return c;
+		}
+	);
 
 	const addCoffee = (coffee: string) => {
 		dispatch({ type: CoffeeActionTypes.ADD_COFFEE, payload: coffee });

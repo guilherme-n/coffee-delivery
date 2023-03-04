@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { IconBgColor } from '.';
 
-interface WrapperProps {
+interface ContainerProps {
 	iconBgColor: IconBgColor;
 }
 
-export const Wrapper = styled.div<WrapperProps>`
+export const Container = styled.div<ContainerProps>`
 	display: flex;
 	gap: 0.75rem;
 	align-items: center;
