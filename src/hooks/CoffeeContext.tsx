@@ -1,7 +1,15 @@
-import { createContext, ReactNode, useContext, useReducer } from 'react';
+import {
+	createContext,
+	ReactNode,
+	useContext,
+	useEffect,
+	useReducer,
+} from 'react';
 import { coffeesList } from '../pages/Home/seed';
 import { coffeesReducer, CoffeeActionTypes } from '../reducers/coffees';
 import { Coffee } from '../types/coffee';
+
+const COFFEES_LOCAL_STORAGE_KEY = '@coffee-delivery:coffees-state-1.0';
 
 interface CoffeeContextType {
 	coffees: Coffee[];
@@ -22,9 +30,18 @@ export const CoffeeProvider = ({ children }: CoffeeProviderProps) => {
 		coffeesReducer,
 		coffeesList,
 		(c: Coffee[]) => {
+			const data = localStorage.getItem(COFFEES_LOCAL_STORAGE_KEY);
+
+			if (data) {
+				return JSON.parse(data);
+			}
 			return c;
 		}
 	);
+
+	useEffect(() => {
+		localStorage.setItem(COFFEES_LOCAL_STORAGE_KEY, JSON.stringify(coffees));
+	}, coffees);
 
 	const addCoffee = (coffee: string) => {
 		dispatch({ type: CoffeeActionTypes.ADD_COFFEE, payload: coffee });
