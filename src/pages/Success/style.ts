@@ -4,6 +4,7 @@ export const Container = styled.main`
 	display: flex;
 	justify-content: space-between;
 	margin-top: 5rem;
+	align-items: flex-end;
 
 	h2 {
 		font-size: ${(props) => props.theme.fontSize['title-l']};
@@ -13,6 +14,11 @@ export const Container = styled.main`
 	p {
 		font-size: ${(props) => props.theme.fontSize['text-l']};
 		color: ${(props) => props.theme['base-subtitle']};
+	}
+
+	img {
+		position: relative;
+		bottom: -17px;
 	}
 `;
 

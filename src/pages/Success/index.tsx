@@ -8,10 +8,11 @@ import { PaymentMethod } from '../../types/paymentMethod';
 const getAddress = (
 	street: string,
 	number: string,
+	neighborhood: string,
 	city: string,
 	state: string
 ) => {
-	return `Delivery on ${street}, ${number}  - ${city}, ${state.toUpperCase()}`;
+	return `Delivery on ${street}, ${number} ${neighborhood} - ${city}, ${state.toUpperCase()}`;
 };
 
 const getPaymentMethod = (paymentMethod: PaymentMethod) => {
@@ -22,7 +23,8 @@ const getPaymentMethod = (paymentMethod: PaymentMethod) => {
 export function Success() {
 	const { getValues } = useFormAddress();
 
-	const { paymentMethod, street, number, city, state } = getValues();
+	const { paymentMethod, street, number, neighborhood, city, state } =
+		getValues();
 
 	return (
 		<Container>
@@ -32,7 +34,7 @@ export function Success() {
 				<DeliveryData>
 					<IconWithOneOrTwoLines
 						icon={<MapPin weight='fill' />}
-						text={getAddress(street, number, city, state)}
+						text={getAddress(street, number, neighborhood, city, state)}
 						iconBgColor='Purple'
 					/>
 
