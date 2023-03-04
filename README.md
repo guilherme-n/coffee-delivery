@@ -3,6 +3,7 @@
 
 A coffee shopping page to show off the products allowing clients to order online and inform their addresses to get the coffees delivered.
 
+![home](https://user-images.githubusercontent.com/4152946/222923657-8f60a730-b305-4e66-91bb-c0c9c7798d3a.png)
 
 ## Tech Stack
 
