@@ -6,8 +6,8 @@ import {
 } from 'phosphor-react';
 import coffeeCupSample from '../../assets/coffee-cup-sample.svg';
 import { useCoffee } from '../../hooks/CoffeeContext';
-import { CoffeeDeliveryAdvantages } from './components/CoffeeDeliveryAdvantages';
 import { CoffeeDetails } from './components/CoffeeDetails';
+import { IconWithOneOrTwoLines } from '../../components/IconWithOneOrTwoTexts';
 import {
 	CoffeeDeliveryAdvantagesList,
 	CoffeeProductsAvailable,
@@ -30,23 +30,23 @@ export function Home() {
 						</p>
 					</div>
 					<CoffeeDeliveryAdvantagesList>
-						<CoffeeDeliveryAdvantages
-							icon={<ShoppingCart color='white' />}
+						<IconWithOneOrTwoLines
+							icon={<ShoppingCart />}
 							iconBgColor='YellowDark'
 							text='Simple and safe shopping'
 						/>
-						<CoffeeDeliveryAdvantages
-							icon={<Package color='white' weight='fill' />}
+						<IconWithOneOrTwoLines
+							icon={<Package weight='fill' />}
 							iconBgColor='Gray'
 							text='The package keeps the coffee intact'
 						/>
-						<CoffeeDeliveryAdvantages
-							icon={<Timer color='white' weight='fill' />}
+						<IconWithOneOrTwoLines
+							icon={<Timer weight='fill' />}
 							iconBgColor='Yellow'
 							text='Fast and tracked delivery'
 						/>
-						<CoffeeDeliveryAdvantages
-							icon={<CoffeeIcon color='white' weight='fill' />}
+						<IconWithOneOrTwoLines
+							icon={<CoffeeIcon weight='fill' />}
 							iconBgColor='Purple'
 							text='You get the coffee pretty fresh'
 						/>

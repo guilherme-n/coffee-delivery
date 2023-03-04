@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { useForm, FormProvider, useFormContext } from 'react-hook-form';
+import { PaymentMethod } from '../types/paymentMethod';
 
 export interface FormAddressValues {
 	zip: string;
@@ -9,7 +10,7 @@ export interface FormAddressValues {
 	neighborhood: string;
 	city: string;
 	state: string;
-	paymentMethod: string;
+	paymentMethod: PaymentMethod;
 }
 
 export const FormAddressProvider = ({ children }: { children: ReactNode }) => {

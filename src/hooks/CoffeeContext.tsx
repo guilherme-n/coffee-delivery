@@ -8,6 +8,7 @@ interface CoffeeContextType {
 	addCoffee: (id: string) => void;
 	removeCoffee: (id: string) => void;
 	removeAllCoffees: (id: string) => void;
+	clearCart: () => void;
 }
 
 const CoffeesContext = createContext({} as CoffeeContextType);
@@ -31,6 +32,10 @@ export const CoffeeProvider = ({ children }: CoffeeProviderProps) => {
 		dispatch({ type: CoffeeActionTypes.REMOVE_ALL_COFFEES, payload: coffee });
 	};
 
+	const clearCart = () => {
+		dispatch({ type: CoffeeActionTypes.CLEAR_CART, payload: '' });
+	};
+
 	return (
 		<CoffeesContext.Provider
 			value={{
@@ -38,6 +43,7 @@ export const CoffeeProvider = ({ children }: CoffeeProviderProps) => {
 				addCoffee,
 				removeCoffee,
 				removeAllCoffees,
+				clearCart,
 			}}
 		>
 			{children}

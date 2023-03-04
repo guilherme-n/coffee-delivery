@@ -31,7 +31,7 @@ export const CoffeeDeliveryAdvantagesList = styled.div`
 	display: grid;
 	grid-row: auto auto;
 	grid-template-columns: 2fr 3fr;
-	gap: 1.25rem 2.5rem;
+	gap: 1.25rem 1.15rem;
 `;
 
 export const CoffeeProductsAvailable = styled.div`

@@ -33,15 +33,15 @@ export const Location = styled.div`
 
 export const CoffeesCountIcon = styled.span`
 	position: absolute;
-	top: -12px;
-	right: -12px;
+	top: -0.75rem;
+	right: -0.75rem;
 
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
-	width: 25px;
-	height: 25px;
+	width: 1.5rem;
+	height: 1.5rem;
 	border-radius: 50%;
 
 	background: ${(props) => props.theme['yellow-dark']};

@@ -5,6 +5,7 @@ export enum CoffeeActionTypes {
 	ADD_COFFEE,
 	REMOVE_COFFEE,
 	REMOVE_ALL_COFFEES,
+	CLEAR_CART,
 }
 
 interface CoffeeAction {
@@ -43,6 +44,14 @@ export const coffeesReducer = (state: Coffee[], action: CoffeeAction) => {
 
 				draft[indexOfCoffee].amount = 0;
 
+				return draft;
+			});
+
+		case CoffeeActionTypes.CLEAR_CART:
+			return produce(state, (draft) => {
+				draft.forEach((c) => {
+					c.amount = 0;
+				});
 				return draft;
 			});
 	}

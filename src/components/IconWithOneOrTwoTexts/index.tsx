@@ -3,19 +3,23 @@ import { Wrapper } from './styles';
 
 export type IconBgColor = 'Yellow' | 'YellowDark' | 'Gray' | 'Purple';
 
-interface CoffeeDeliveryAdvantagesProps {
+interface IconWithOneOrTwoLinesProps {
 	icon: ReactNode;
 	iconBgColor: IconBgColor;
 	text: string;
+	secondaryText?: string;
 }
 
-export function CoffeeDeliveryAdvantages(props: CoffeeDeliveryAdvantagesProps) {
-	const { icon, text, iconBgColor } = props;
+export function IconWithOneOrTwoLines(props: IconWithOneOrTwoLinesProps) {
+	const { icon, text, secondaryText, iconBgColor } = props;
 
 	return (
 		<Wrapper iconBgColor={iconBgColor}>
 			<div>{icon}</div>
-			<span>{text}</span>
+			<div>
+				<span>{text}</span>
+				{secondaryText && <span>{secondaryText}</span>}
+			</div>
 		</Wrapper>
 	);
 }

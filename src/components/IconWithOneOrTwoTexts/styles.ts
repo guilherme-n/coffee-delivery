@@ -10,8 +10,11 @@ export const Wrapper = styled.div<WrapperProps>`
 	gap: 0.75rem;
 	align-items: center;
 
-	div {
+	div:first-child {
 		display: flex;
+		border-radius: 50%;
+		padding: 0.5rem;
+
 		background-color: ${(props) => {
 			switch (props.iconBgColor) {
 				case 'Yellow':
@@ -24,7 +27,22 @@ export const Wrapper = styled.div<WrapperProps>`
 					return props.theme['purple-dark'];
 			}
 		}};
-		border-radius: 50%;
-		padding: 0.5rem;
+	}
+
+	div:last-child {
+		display: flex;
+		flex-direction: column;
+
+		span {
+			line-height: 130%;
+
+			& + span {
+				font-weight: bold;
+			}
+		}
+	}
+
+	svg {
+		color: ${(props) => props.theme.white};
 	}
 `;

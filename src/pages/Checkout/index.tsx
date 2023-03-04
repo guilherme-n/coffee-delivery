@@ -27,8 +27,8 @@ import {
 	FormAddressValues,
 	useFormAddress,
 } from '../../hooks/FormAddressContext';
-
-export type PaymentMethod = 'CreditCard' | 'DebitCard' | 'Money';
+import { useNavigate } from 'react-router-dom';
+import { PaymentMethod } from '../../types/paymentMethod';
 
 const DELIVERY_FEE = 3.5;
 
@@ -43,7 +43,8 @@ export function Checkout() {
 		formState: { errors },
 	} = useFormAddress();
 
-	const { coffees } = useCoffee();
+	const { coffees, clearCart } = useCoffee();
+	const navigate = useNavigate();
 
 	const coffeesInCart = coffees.filter((c) => c.amount > 0);
 
@@ -57,7 +58,11 @@ export function Checkout() {
 		setPaymentMethod(PaymentMethod);
 	};
 
-	const handleConfirmOrder = (data: FormAddressValues) => {};
+	const handleConfirmOrder = (data: FormAddressValues) => {
+		alert('submitting data');
+		clearCart();
+		navigate({ pathname: '/success' });
+	};
 
 	const itemsPrice = getTotalPrice(coffeesInCart);
 
