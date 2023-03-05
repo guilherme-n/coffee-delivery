@@ -2,6 +2,7 @@ import { Trash } from 'phosphor-react';
 import { AmountButtons } from '../../../../components/AmountButtons';
 import { useCoffee } from '../../../../hooks/CoffeeContext';
 import { Coffee } from '../../../../types/coffee';
+import { priceFormatter } from '../../../../Utils/formatter';
 import { Container, LabelWithButtons } from './styles';
 
 interface CoffeeDetailsCheckoutProps {
@@ -14,10 +15,6 @@ export function CoffeeDetailsCheckout(props: CoffeeDetailsCheckoutProps) {
 	} = props;
 
 	const { addCoffee, removeCoffee, removeAllCoffees } = useCoffee();
-
-	const getTotalPrice = (price: number, amount: number) => {
-		return (price * amount).toFixed(2);
-	};
 
 	return (
 		<Container>
@@ -40,7 +37,7 @@ export function CoffeeDetailsCheckout(props: CoffeeDetailsCheckoutProps) {
 					</div>
 				</LabelWithButtons>
 			</div>
-			<span>R$ {getTotalPrice(price, amount)}</span>
+			<span>{priceFormatter.format(price * amount)}</span>
 		</Container>
 	);
 }

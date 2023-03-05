@@ -3,6 +3,10 @@ import { AmountButtons } from '../../../../components/AmountButtons';
 import { useCoffee } from '../../../../hooks/CoffeeContext';
 import { Coffee } from '../../../../types/coffee';
 import {
+	extractValueAndSymbolFromMoney,
+	priceFormatter,
+} from '../../../../Utils/formatter';
+import {
 	Container,
 	PillShapesContainer,
 	PriceAndAmountContainer,
@@ -25,13 +29,13 @@ const getImageAltName = (path: string) => {
 	return '';
 };
 
-const getPriceWithComma = (price: number) => {
-	return price.toFixed(2).replace('.', ',');
-};
-
 export function CoffeeDetails({ coffee }: CoffeeDetailsProps) {
 	const { id, amount, description, details, imgSrc, name, price } = coffee;
 	const { addCoffee, removeCoffee } = useCoffee();
+
+	const money = priceFormatter.format(price);
+
+	const value = extractValueAndSymbolFromMoney(money);
 
 	return (
 		<Container>
@@ -45,8 +49,8 @@ export function CoffeeDetails({ coffee }: CoffeeDetailsProps) {
 			<p>{description}</p>
 			<PriceAndAmountContainer>
 				<PriceLabels>
-					<span>R$</span>
-					<span>{getPriceWithComma(price)}</span>
+					<span>{value?.currency}</span>
+					<span>{value?.amount}</span>
 				</PriceLabels>
 
 				<div>

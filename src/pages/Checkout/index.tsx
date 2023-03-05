@@ -29,6 +29,7 @@ import {
 } from '../../hooks/FormAddressContext';
 import { useNavigate } from 'react-router-dom';
 import { PaymentMethod } from '../../types/paymentMethod';
+import { priceFormatter } from '../../Utils/formatter';
 
 const DELIVERY_FEE = 3.5;
 
@@ -188,15 +189,15 @@ export function Checkout() {
 					<PricesLabelList>
 						<PriceLabel>
 							<span>Items price</span>
-							<span>R$ {itemsPrice.toFixed(2)}</span>
+							<span>{priceFormatter.format(itemsPrice)}</span>
 						</PriceLabel>
 						<PriceLabel>
 							<span>Delivery fee</span>
-							<span>R$ {DELIVERY_FEE.toFixed(2)}</span>
+							<span>{priceFormatter.format(DELIVERY_FEE)}</span>
 						</PriceLabel>
 						<PriceLabelTotal>
 							<span>Total</span>
-							<span>R$ {(itemsPrice + DELIVERY_FEE).toFixed(2)}</span>
+							<span>{priceFormatter.format(itemsPrice + DELIVERY_FEE)}</span>
 						</PriceLabelTotal>
 					</PricesLabelList>
 
