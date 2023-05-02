@@ -3,8 +3,8 @@ import { MapPin, ShoppingCart } from 'phosphor-react';
 import { Container, Location, CoffeesCountIcon } from './styles';
 
 import logo from '../assets/logo.svg';
-import { useCoffee } from '../hooks/CoffeeContext';
 import { Coffee } from '../types/coffee';
+import { useCoffeeSelector } from '../store/useCoffeeSelector';
 
 const getCoffeesCount = (coffees: Coffee[]) => {
 	return coffees
@@ -15,7 +15,8 @@ const getCoffeesCount = (coffees: Coffee[]) => {
 };
 
 export function DefaultLayout() {
-	const { coffees } = useCoffee();
+	const coffees = useCoffeeSelector((state) => state);
+
 	const coffeesCount = getCoffeesCount(coffees);
 
 	return (

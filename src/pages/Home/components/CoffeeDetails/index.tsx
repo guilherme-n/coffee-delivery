@@ -1,6 +1,6 @@
 import { ShoppingCart } from 'phosphor-react';
 import { AmountButtons } from '../../../../components/AmountButtons';
-import { useCoffee } from '../../../../hooks/CoffeeContext';
+import { useDispatch } from 'react-redux';
 import { Coffee } from '../../../../types/coffee';
 import {
 	extractValueAndSymbolFromMoney,
@@ -13,6 +13,7 @@ import {
 	PriceLabels,
 	CartContainer,
 } from './styles';
+import { coffeeActions } from '../../../../store';
 
 interface CoffeeDetailsProps {
 	coffee: Coffee;
@@ -31,11 +32,19 @@ const getImageAltName = (path: string) => {
 
 export function CoffeeDetails({ coffee }: CoffeeDetailsProps) {
 	const { id, amount, description, details, imgSrc, name, price } = coffee;
-	const { addCoffee, removeCoffee } = useCoffee();
+	const dispatch = useDispatch();
 
 	const money = priceFormatter.format(price);
 
 	const value = extractValueAndSymbolFromMoney(money);
+
+	function handleIncreaseAmount(id: string) {
+		dispatch(coffeeActions.addCoffee({ id }));
+	}
+
+	function handleDecreaseAmount(id: string) {
+		dispatch(coffeeActions.removeCoffee({ id }));
+	}
 
 	return (
 		<Container>
@@ -57,8 +66,8 @@ export function CoffeeDetails({ coffee }: CoffeeDetailsProps) {
 					<AmountButtons
 						id={id}
 						amount={amount}
-						onDecreaseAmount={removeCoffee}
-						onIncreaseAmount={addCoffee}
+						onDecreaseAmount={handleDecreaseAmount}
+						onIncreaseAmount={handleIncreaseAmount}
 					/>
 
 					<CartContainer>

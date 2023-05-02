@@ -5,7 +5,6 @@ import {
 	Timer,
 } from 'phosphor-react';
 import coffeeCupSample from '../../assets/coffee-cup-sample.svg';
-import { useCoffee } from '../../hooks/CoffeeContext';
 import { CoffeeDetails } from './components/CoffeeDetails';
 import { IconWithOneOrTwoLines } from '../../components/IconWithOneOrTwoTexts';
 import {
@@ -13,9 +12,10 @@ import {
 	CoffeeProductsAvailable,
 	MainContainer,
 } from './styles';
+import { useCoffeeSelector } from '../../store/useCoffeeSelector';
 
 export function Home() {
-	const { coffees } = useCoffee();
+	const coffees = useCoffeeSelector((state) => state);
 
 	return (
 		<main>

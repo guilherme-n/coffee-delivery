@@ -1,9 +1,10 @@
 import { Trash } from 'phosphor-react';
 import { AmountButtons } from '../../../../components/AmountButtons';
-import { useCoffee } from '../../../../hooks/CoffeeContext';
 import { Coffee } from '../../../../types/coffee';
 import { priceFormatter } from '../../../../Utils/formatter';
 import { Container, LabelWithButtons } from './styles';
+import { useDispatch } from 'react-redux';
+import { coffeeActions } from '../../../../store';
 
 interface CoffeeDetailsCheckoutProps {
 	coffee: Coffee;
@@ -14,7 +15,19 @@ export function CoffeeDetailsCheckout(props: CoffeeDetailsCheckoutProps) {
 		coffee: { id, name, amount, price, imgSrc },
 	} = props;
 
-	const { addCoffee, removeCoffee, removeAllCoffees } = useCoffee();
+	const dispatch = useDispatch();
+
+	function handleIncreaseAmount(id: string) {
+		dispatch(coffeeActions.addCoffee({ id }));
+	}
+
+	function handleDecreaseAmount(id: string) {
+		dispatch(coffeeActions.removeCoffee({ id }));
+	}
+
+	function handleRemoveAllCoffees(id: string) {
+		dispatch(coffeeActions.removeAllCoffees({ id }));
+	}
 
 	return (
 		<Container>
@@ -26,11 +39,11 @@ export function CoffeeDetailsCheckout(props: CoffeeDetailsCheckoutProps) {
 						<AmountButtons
 							id={id}
 							amount={amount}
-							onDecreaseAmount={removeCoffee}
-							onIncreaseAmount={addCoffee}
+							onDecreaseAmount={handleDecreaseAmount}
+							onIncreaseAmount={handleIncreaseAmount}
 							disabledDecreaseButton={amount === 1}
 						/>
-						<button onClick={() => removeAllCoffees(id)}>
+						<button onClick={() => handleRemoveAllCoffees(id)}>
 							<Trash />
 							<span>remover</span>
 						</button>

@@ -7,7 +7,6 @@ import {
 } from 'phosphor-react';
 import { useState } from 'react';
 import { Input } from '../../components/Input';
-import { useCoffee } from '../../hooks/CoffeeContext';
 import { Coffee } from '../../types/coffee';
 import { CoffeeDetailsCheckout } from './components/CoffeeDetailsCheckout';
 import {
@@ -30,6 +29,9 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { PaymentMethod } from '../../types/paymentMethod';
 import { priceFormatter } from '../../Utils/formatter';
+import { useDispatch } from 'react-redux';
+import { coffeeActions } from '../../store';
+import { useCoffeeSelector } from '../../store/useCoffeeSelector';
 
 const DELIVERY_FEE = 3.5;
 
@@ -44,7 +46,9 @@ export function Checkout() {
 		formState: { errors },
 	} = useFormAddress();
 
-	const { coffees, clearCart } = useCoffee();
+	const dispatch = useDispatch();
+	const coffees = useCoffeeSelector((state) => state);
+
 	const navigate = useNavigate();
 
 	const coffeesInCart = coffees.filter((c) => c.amount > 0);
@@ -60,7 +64,7 @@ export function Checkout() {
 	};
 
 	const handleConfirmOrder = (data: FormAddressValues) => {
-		clearCart();
+		dispatch(coffeeActions.clearCart());
 		navigate({ pathname: '/success' });
 	};
 
