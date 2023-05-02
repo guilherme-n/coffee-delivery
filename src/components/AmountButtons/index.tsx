@@ -23,12 +23,17 @@ export function AmountButtons(props: AmountButtonsProps) {
 			<button
 				disabled={amount === 0 || disabledDecreaseButton}
 				onClick={() => onDecreaseAmount(id)}
+				aria-label='decreaseButton'
 				type='button'
 			>
 				<Minus weight='bold' size={14} />
 			</button>
 			<span>{amount}</span>
-			<button onClick={() => onIncreaseAmount(id)} type='button'>
+			<button
+				onClick={() => onIncreaseAmount(id)}
+				type='button'
+				aria-label='increaseButton'
+			>
 				<Plus weight='bold' size={14} />
 			</button>
 		</Container>
